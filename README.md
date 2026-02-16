@@ -1,5 +1,7 @@
 # APWBSemana5
 
+[Esto es la descripción generada por la template de Angular de .NET, los dejo porque pueden ser útiles]
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
 
 ## Development server

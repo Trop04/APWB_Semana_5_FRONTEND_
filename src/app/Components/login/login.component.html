@@ -1,0 +1,73 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Iniciar Sesión</h1>
+      <p>Ingrese sus credenciales para continuar</p>
+    </div>
+
+
+    <div *ngIf="sessionExpired" class="alert alert-warning" role="alert">
+      <strong>Sesión expirada.</strong> Por favor, inicie sesión nuevamente.
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      <button type="button" class="close-btn" (click)="clearError()" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ errorMessage }}
+    </div>
+
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Nombre de Usuario -->
+      <div class="form-group">
+        <label for="nombreUsuario" class="form-label">
+          Nombre de Usuario <span class="required">*</span>
+        </label>
+        <input type="text"
+               id="nombreUsuario"
+               formControlName="nombreUsuario"
+               class="form-control"
+               [class.is-invalid]="hasError('nombreUsuario')"
+               placeholder="Ingrese su usuario"
+               autocomplete="username"
+               autofocus />
+        <div *ngIf="hasError('nombreUsuario')" class="invalid-feedback">
+          {{ getErrorMessage('nombreUsuario') }}
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group">
+        <label for="password" class="form-label">
+          Contraseña <span class="required">*</span>
+        </label>
+        <input type="password"
+               id="password"
+               formControlName="password"
+               class="form-control"
+               [class.is-invalid]="hasError('password')"
+               placeholder="Ingrese su contraseña"
+               autocomplete="current-password" />
+        <div *ngIf="hasError('password')" class="invalid-feedback">
+          {{ getErrorMessage('password') }}
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+              class="btn btn-primary btn-block"
+              [disabled]="loading || loginForm.invalid">
+        <span *ngIf="!loading">Iniciar Sesión</span>
+        <span *ngIf="loading">
+          <span class="spinner"></span>
+          Iniciando sesión...
+        </span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>¿No tiene cuenta? <a routerLink="/register">Regístrese aquí</a></p>
+    </div>
+  </div>
+</div>

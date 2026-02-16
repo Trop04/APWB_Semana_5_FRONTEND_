@@ -1,0 +1,135 @@
+<div class="productos-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <h1 class="navbar-title">Sistema de Productos</h1>
+      <div class="navbar-user">
+        <span class="user-name">{{ currentUser?.nombreUsuario }}</span>
+        <button class="btn btn-logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <div class="content">
+    <!-- Header con título y botón crear -->
+    <div class="content-header">
+      <div>
+        <h2>Gestión de Productos</h2>
+        <p class="subtitle">Administre el catálogo de productos</p>
+      </div>
+      <button class="btn btn-primary" (click)="crear()">
+        <span class="btn-icon">+</span>
+        Nuevo Producto
+      </button>
+    </div>
+
+    <!-- Mensajes de alerta -->
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+      <button type="button" class="close-btn" (click)="clearMessages()" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      <button type="button" class="close-btn" (click)="clearMessages()" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ errorMessage }}
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <div class="spinner-large"></div>
+      <p>Cargando productos...</p>
+    </div>
+
+    <!-- Tabla de productos -->
+    <div *ngIf="!loading" class="table-container">
+      <div *ngIf="productos.length === 0" class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h3>No hay productos registrados</h3>
+        <p>Comience agregando su primer producto</p>
+        <button class="btn btn-primary" (click)="crear()">Crear Producto</button>
+      </div>
+
+      <table *ngIf="productos.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Fecha Creación</th>
+            <th>Creado Por</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos" [class.deleting]="deletingId === producto.id">
+            <td class="font-mono">{{ producto.codigo }}</td>
+            <td>
+              <div class="product-name">{{ producto.nombre }}</div>
+              <div *ngIf="producto.descripcion" class="product-description">
+                {{ producto.descripcion }}
+              </div>
+            </td>
+            <td class="font-bold">{{ formatPrice(producto.precio) }}</td>
+            <td>
+              <span class="badge" [class.badge-low]="producto.stock < 10" [class.badge-ok]="producto.stock >= 10">
+                {{ producto.stock }} unidades
+              </span>
+            </td>
+            <td>
+              <span class="badge" [class.badge-success]="producto.activo" [class.badge-inactive]="!producto.activo">
+                {{ producto.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td>{{ formatDate(producto.fechaCreacion) }}</td>
+            <td>{{ producto.usuarioCreacion || 'N/A' }}</td>
+            <td class="actions">
+              <button class="btn-icon btn-edit"
+                      (click)="editar(producto.id)"
+                      [disabled]="deletingId === producto.id"
+                      title="Editar"
+                      aria-label="Editar producto">
+                ✏️
+              </button>
+              <button class="btn-icon btn-delete"
+                      (click)="confirmarEliminar(producto)"
+                      [disabled]="deletingId === producto.id"
+                      title="Eliminar"
+                      aria-label="Eliminar producto">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación de eliminación -->
+  <div *ngIf="showDeleteConfirm" class="modal-overlay" (click)="cancelarEliminar()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Confirmar Eliminación</h3>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro que desea eliminar el producto?</p>
+        <div class="product-info">
+          <strong>{{ productToDelete?.nombre }}</strong>
+          <br>
+          <span class="text-muted">Código: {{ productToDelete?.codigo }}</span>
+        </div>
+        <p class="warning-text">Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelarEliminar()">Cancelar</button>
+        <button class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

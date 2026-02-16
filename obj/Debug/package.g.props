@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">apwb-semana-5</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">0.0.0</PackageJsonVersion>
+    <PackageJsonScriptsNg Condition="$(PackageJsonScriptsNg) == ''">ng</PackageJsonScriptsNg>
+    <PackageJsonScriptsStart Condition="$(PackageJsonScriptsStart) == ''">ng serve --host=127.0.0.1</PackageJsonScriptsStart>
+    <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">ng build</PackageJsonScriptsBuild>
+    <PackageJsonScriptsWatch Condition="$(PackageJsonScriptsWatch) == ''">ng build --watch --configuration development</PackageJsonScriptsWatch>
+    <PackageJsonScriptsTest Condition="$(PackageJsonScriptsTest) == ''">ng test</PackageJsonScriptsTest>
+    <PackageJsonPrettierPrintwidth Condition="$(PackageJsonPrettierPrintwidth) == ''">100</PackageJsonPrettierPrintwidth>
+    <PackageJsonPrettierSinglequote Condition="$(PackageJsonPrettierSinglequote) == ''">true</PackageJsonPrettierSinglequote>
+    <PackageJsonPrettierOverrides Condition="$(PackageJsonPrettierOverrides) == ''">[
+  {
+    "files": "*.html",
+    "options": {
+      "parser": "angular"
+    }
+  }
+]</PackageJsonPrettierOverrides>
+    <PackageJsonPrivate Condition="$(PackageJsonPrivate) == ''">true</PackageJsonPrivate>
+    <PackageJsonPackagemanager Condition="$(PackageJsonPackagemanager) == ''">npm@10.9.4</PackageJsonPackagemanager>
+    <PackageJsonDependenciesAngularCommon Condition="$(PackageJsonDependenciesAngularCommon) == ''">^21.1.0</PackageJsonDependenciesAngularCommon>
+    <PackageJsonDependenciesAngularCompiler Condition="$(PackageJsonDependenciesAngularCompiler) == ''">^21.1.0</PackageJsonDependenciesAngularCompiler>
+    <PackageJsonDependenciesAngularCore Condition="$(PackageJsonDependenciesAngularCore) == ''">^21.1.0</PackageJsonDependenciesAngularCore>
+    <PackageJsonDependenciesAngularForms Condition="$(PackageJsonDependenciesAngularForms) == ''">^21.1.0</PackageJsonDependenciesAngularForms>
+    <PackageJsonDependenciesAngularPlatformBrowser Condition="$(PackageJsonDependenciesAngularPlatformBrowser) == ''">^21.1.0</PackageJsonDependenciesAngularPlatformBrowser>
+    <PackageJsonDependenciesAngularRouter Condition="$(PackageJsonDependenciesAngularRouter) == ''">^21.1.0</PackageJsonDependenciesAngularRouter>
+    <PackageJsonDependenciesJestEditorSupport Condition="$(PackageJsonDependenciesJestEditorSupport) == ''">*</PackageJsonDependenciesJestEditorSupport>
+    <PackageJsonDependenciesRxjs Condition="$(PackageJsonDependenciesRxjs) == ''">~7.8.0</PackageJsonDependenciesRxjs>
+    <PackageJsonDependenciesTslib Condition="$(PackageJsonDependenciesTslib) == ''">^2.3.0</PackageJsonDependenciesTslib>
+    <PackageJsonDependenciesZoneJs Condition="$(PackageJsonDependenciesZoneJs) == ''">^0.16.0</PackageJsonDependenciesZoneJs>
+    <PackageJsonDevdependenciesAngularBuild Condition="$(PackageJsonDevdependenciesAngularBuild) == ''">^21.1.4</PackageJsonDevdependenciesAngularBuild>
+    <PackageJsonDevdependenciesAngularCli Condition="$(PackageJsonDevdependenciesAngularCli) == ''">^21.1.4</PackageJsonDevdependenciesAngularCli>
+    <PackageJsonDevdependenciesAngularCompilerCli Condition="$(PackageJsonDevdependenciesAngularCompilerCli) == ''">^21.1.0</PackageJsonDevdependenciesAngularCompilerCli>
+    <PackageJsonDevdependenciesEslint Condition="$(PackageJsonDevdependenciesEslint) == ''">^10.0.0</PackageJsonDevdependenciesEslint>
+    <PackageJsonDevdependenciesJsdom Condition="$(PackageJsonDevdependenciesJsdom) == ''">^27.1.0</PackageJsonDevdependenciesJsdom>
+    <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">~5.9.2</PackageJsonDevdependenciesTypescript>
+    <PackageJsonDevdependenciesVitest Condition="$(PackageJsonDevdependenciesVitest) == ''">^4.0.8</PackageJsonDevdependenciesVitest>
+  </PropertyGroup>
+</Project>
